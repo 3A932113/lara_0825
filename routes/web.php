@@ -1,7 +1,9 @@
 <?php
+
 use App\Models\Post;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     //return view('welcome');
     //return view('index');
@@ -41,17 +44,19 @@ Route::get('/', function () {
 //    ]);
 //    return 'Updated, OK!';
 
-    $post = Post::find(1);
-    $post->update([
-        'title' => 'updated title',
-        'content' => 'updated content',
-    ]);
-    return 'Updated, OK!';
-    $post->title = 'saved title';
-    $post->content = 'saved content';
-    $post->save();
-    return 'Saved, OK!';
+//    $post = Post::find(1);
+//    $post->title = 'saved title';
+//    $post->content = 'saved content';
+//    $post->save();
+//    return 'Saved, OK!';
 
+//    $post = Post::find(1);
+//    $post->delete();
+
+//    Post::destroy(2);
+
+    Post::destroy(3, 5, 7);
+    return 'Deleted!';
 });
 Route::get('posts',[PostController::class, 'index'])->name('posts.index');
 Route::get('post',[PostController::class, 'show'])->name('posts.show');
