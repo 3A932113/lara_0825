@@ -55,8 +55,20 @@ Route::get('/', function () {
 
 //    Post::destroy(2);
 
-    Post::destroy(3, 5, 7);
-    return 'Deleted!';
+//    Post::destroy(3, 5, 7);
+//    return 'Deleted!';
+
+//    取得 Collection //多筆貼文的集合
+//    $allPosts = Post::all();
+//    dd($allPosts);
+//    $featuredPosts = Post::where('is_feature', 1)->get();   //多筆貼文的集合
+//    dd($featuredPosts);
+//    取得 Model  //單一筆貼文
+//    $fourthPost = Post::find(4);
+//    dd($fourthPost);
+    $lastPost = Post::orderBy('id', 'DESC')->first();
+    dd($lastPost);
+
 });
 Route::get('posts',[PostController::class, 'index'])->name('posts.index');
 Route::get('post',[PostController::class, 'show'])->name('posts.show');
