@@ -83,7 +83,8 @@ Route::get('/', function () {
     $comment = Comment::find(2);
     echo $comment->content.'<br>';
     echo '******************'.'<br>';
-    $post = $comment->post()->first();      //$comment->post()->first()可簡寫$comment->post
+    //    $post = $comment->post()->first();      //$comment->post()->first()可簡寫$comment->post
+    $post = $comment->post;
     echo $post->id.'<br>';
     echo $post->title.'<br>';
     echo $post->content.'<br>';
