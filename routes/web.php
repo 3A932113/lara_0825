@@ -33,9 +33,16 @@ Route::get('/', function () {
     //    dd($posts);             //data dump 可將變數內容倒出，並停止程式執行
     //    $post = Post::find(1);      //找尋 posts 資料表 id = 1 的貼文
     //    dd($post);
-    $posts = Post::where('id', '<', 10)->orderBy('id', 'DESC')->get();  //查詢符合條件(id<10)的貼文
-    dd($posts);
-    return 'Saved, OK!';
+    //    $posts = Post::where('id', '<', 10)->orderBy('id', 'DESC')->get();  //查詢符合條件(id<10)的貼文
+    //    dd($posts);
+
+    $post = Post::find(1);
+    $post->update([
+        'title' => 'updated title',
+        'content' => 'updated content',
+    ]);
+    return 'Updated, OK!';
+
 });
 Route::get('posts',[PostController::class, 'index'])->name('posts.index');
 Route::get('post',[PostController::class, 'show'])->name('posts.show');
