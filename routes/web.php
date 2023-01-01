@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -69,17 +70,26 @@ Route::get('/', function () {
 //    $lastPost = Post::orderBy('id', 'DESC')->first();
 //    dd($lastPost);
 
-    $post = Post::find(6);
-    echo '標題: '.$post->title.'<br>';
-    echo '內容: '.$post->content.'<br>';
-    echo '--------------------------'.'<br>';
+//    $post = Post::find(6);
+//    echo '標題: '.$post->title.'<br>';
+//    echo '內容: '.$post->content.'<br>';
+//    echo '--------------------------'.'<br>';
     //    $comments = $post->comments()->get();   //$post->comments()->get()可簡寫$post->comments
-    $comments = $post->comments;
-    foreach ($comments as $comment){
-        echo '留言: '.$comment->content."<br>";
-        echo '-----------------------------'.'<br>';
-    }
+    //    $comments = $post->comments;
+//    foreach ($comments as $comment){
+//        echo '留言: '.$comment->content."<br>";
+//        echo '-----------------------------'.'<br>';
+//    }
+    $comment = Comment::find(2);
+    echo $comment->content.'<br>';
+    echo '******************'.'<br>';
+    $post = $comment->post()->first();      //$comment->post()->first()可簡寫$comment->post
+    echo $post->id.'<br>';
+    echo $post->title.'<br>';
+    echo $post->content.'<br>';
+
 });
+
 Route::get('posts',[PostController::class, 'index'])->name('posts.index');
 Route::get('post',[PostController::class, 'show'])->name('posts.show');
 Route::get('contact',[PostController::class, 'contact'])->name('posts.contact');
