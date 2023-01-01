@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->text('content');
-            $table->unsignedbigInteger('post_id');
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
-                ->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('title', 500)->change();
+            $table->boolean('is_feature')->default(false)->after('content');
         });
     }
 
@@ -31,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('title')->change();
+            $table->dropColumn('is_feature');
+        });
     }
 };
